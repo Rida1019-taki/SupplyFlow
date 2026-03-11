@@ -26,7 +26,7 @@ public class Produit {
     }
 
     @ManyToOne
-    @JoinColumn(name = "id_fournisseur")
+    @JoinColumn(name = "fournisseur_id")
     private Fournisseur fournisseur;
 
     @OneToMany(mappedBy = "produit" , cascade = CascadeType.ALL)

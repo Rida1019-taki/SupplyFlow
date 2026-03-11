@@ -12,16 +12,18 @@ public class Fournisseur {
     private Long idFournisseur;
     private String nom;
     private String ville;
+    private String telefone;
 
-    public Fournisseur(String nom, String ville) {
+    public Fournisseur(String nom, String ville , String telefone) {
         this.nom = nom;
         this.ville = ville;
+        this.telefone = telefone;
     }
 
     public Fournisseur() {
     }
 
-    @OneToMany(mappedBy = "produit")
+    @OneToMany(mappedBy = "fournisseur")
     private List<Produit> produit;
 
     public List<Produit> getProduit() {
@@ -54,5 +56,13 @@ public class Fournisseur {
 
     public void setVille(String ville) {
         this.ville = ville;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 }
