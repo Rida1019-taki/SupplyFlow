@@ -30,7 +30,7 @@ public class Produit {
     private Fournisseur fournisseur;
 
     @OneToMany(mappedBy = "produit" , cascade = CascadeType.ALL)
-    private List<Mouvement> mouvement;
+    private List<MouvementStock> mouvementStock;
 
     public Fournisseur getFournisseur() {
         return fournisseur;
@@ -40,12 +40,12 @@ public class Produit {
         this.fournisseur = fournisseur;
     }
 
-    public List<Mouvement> getMouvement() {
-        return mouvement;
+    public List<MouvementStock> getMouvement() {
+        return mouvementStock;
     }
 
-    public void setMouvement(List<Mouvement> mouvement) {
-        this.mouvement = mouvement;
+    public void setMouvement(List<MouvementStock> mouvementStock) {
+        this.mouvementStock = mouvementStock;
     }
 
     public Long getId() {

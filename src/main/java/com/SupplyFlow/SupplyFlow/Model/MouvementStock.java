@@ -6,7 +6,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "Mouvement")
-public class Mouvement {
+public class MouvementStock {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idMouvement;
@@ -14,13 +14,25 @@ public class Mouvement {
     private LocalDate date;
     private String type;
 
-    public Mouvement(int quantity, LocalDate date, String type) {
+    public MouvementStock(int quantity, LocalDate date, String type) {
         this.quantity = quantity;
         this.date = date;
         this.type = type;
     }
 
-    public Mouvement() {
+    public MouvementStock() {
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "id_produit")
+    private Produit produit;
+
+    public Produit getProduit() {
+        return produit;
+    }
+
+    public void setProduit(Produit produit) {
+        this.produit = produit;
     }
 
     public Long getIdMouvement() {
