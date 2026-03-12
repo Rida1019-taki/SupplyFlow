@@ -1,5 +1,6 @@
 package com.SupplyFlow.SupplyFlow.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -30,6 +31,7 @@ public class Produit {
     private Fournisseur fournisseur;
 
     @OneToMany(mappedBy = "produit" , cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<MouvementStock> mouvementStock;
 
     public Fournisseur getFournisseur() {

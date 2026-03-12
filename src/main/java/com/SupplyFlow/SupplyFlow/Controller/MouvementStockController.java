@@ -26,7 +26,7 @@ public class MouvementStockController {
         return mouvementStockService.entreeStock(produitId , m.getQuantity());
     }
 
-    @PostMapping("/sortie/{produits}")
+    @PostMapping("/sortie/{produitId}")
     public MouvementStock sortieStock(@PathVariable Long produitId , @RequestBody MouvementStock m){
         return mouvementStockService.sortieStock(produitId , m.getQuantity());
     }

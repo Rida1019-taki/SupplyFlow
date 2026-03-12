@@ -1,7 +1,8 @@
 package com.SupplyFlow.SupplyFlow.Controller;
 
+
 import com.SupplyFlow.SupplyFlow.Model.Fournisseur;
-import com.SupplyFlow.SupplyFlow.Model.Produit;
+import org.springframework.ui.Model;
 import com.SupplyFlow.SupplyFlow.Service.FournisseurService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,9 +18,12 @@ public class FournisseurController {
     private FournisseurService fournisseurService;
 
     @GetMapping
-    public List<Fournisseur> getFournisseur(){
-        return fournisseurService.getFournisseur();
+    public String listFournisseurs(Model model){
+        List<Fournisseur> fournisseurs = fournisseurService.getFournisseur();
+        model.addAttribute("fournisseurs", fournisseurs);
+        return "fournisseurs";
     }
+
 
     @PostMapping
     public Fournisseur addFournisseur(@RequestBody Fournisseur fournisseur){

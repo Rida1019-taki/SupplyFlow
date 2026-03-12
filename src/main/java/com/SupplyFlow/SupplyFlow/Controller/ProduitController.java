@@ -4,6 +4,7 @@ import com.SupplyFlow.SupplyFlow.Model.Produit;
 import com.SupplyFlow.SupplyFlow.Service.ProduitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,8 +16,9 @@ public class ProduitController {
     private ProduitService produitService;
 
     @GetMapping
-    public List<Produit> getProduit(){
-        return produitService.getProduits();
+    public String getProduits(Model model) {
+        model.addAttribute("produits", produitService.getProduits());
+        return "produits";
     }
 
     @GetMapping("/{id}")
@@ -24,18 +26,28 @@ public class ProduitController {
         return produitService.getProduitById(id);
     }
 
-    @PostMapping
-    public Produit addProduit(@RequestBody Produit produit){
-        return produitService.addProduit(produit);
+    @PostMapping("/ajouter")
+    public String addProduit(@ModelAttribute("produit") Produit produit) {
+        produitService.addProduit(produit);
+        return "redirect:/produits";
     }
 
-    @PutMapping("/{id}")
-    public Produit updateProduit(@PathVariable Long id , @RequestBody Produit produit){
-        return produitService.udpateProduit(id , produit);
+    @GetMapping("/modifier/{id}")
+    public String showEditProduitForm(@PathVariable Long id, Model model) {
+        Produit produit = produitService.getProduitById(id);
+        model.addAttribute("produit", produit);
+        return "modifier-produit";
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteProduit(@PathVariable Long id){
-         produitService.deleteProduit(id);
+    @PostMapping("/modifier/{id}")
+    public String updateProduit(@PathVariable Long id, @ModelAttribute Produit produit) {
+        produitService.udpateProduit(id, produit);
+        return "redirect:/produits";
+    }
+
+    @GetMapping("/supprimer/{id}")
+    public String deleteProduit(@PathVariable Long id) {
+        produitService.deleteProduit(id);
+        return "redirect:/produits";
     }
 }

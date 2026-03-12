@@ -28,16 +28,13 @@ public class ProduitService {
         return produitRepository.save(produit);
     }
 
-    public Produit udpateProduit(Long id , Produit produit){
-        Produit produitUpdate = produitRepository.findById(id).orElse(null);
-        if (produitUpdate != null){
-            produitUpdate.setNom(produitUpdate.getNom());
-            produitUpdate.setCategorie(produitUpdate.getCategorie());
-            produitUpdate.setPrix(produitUpdate.getPrix());
-            produitUpdate.setQuantity(produitUpdate.getQuantity());
-            return produitRepository.save(produitUpdate);
-        }
-        return null;
+    public Produit udpateProduit(Long id, Produit produit) {
+        Produit produitUpdate = produitRepository.findById(id).orElseThrow();
+        produitUpdate.setNom(produit.getNom());
+        produitUpdate.setCategorie(produit.getCategorie());
+        produitUpdate.setPrix(produit.getPrix());
+        produitUpdate.setQuantity(produit.getQuantity());
+        return produitRepository.save(produitUpdate);
     }
 
     public void deleteProduit(Long id){
