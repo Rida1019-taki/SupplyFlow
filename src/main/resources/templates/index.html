@@ -1,23 +1,46 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>SupplyFlow Logistics</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SupplyFlow | Dashboard</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
 <header>
-    <h1>SupplyFlow Logistics</h1>
+    <h1><i class="fas fa-boxes-packing"></i> SupplyFlow Logistics</h1>
 </header>
 
 <nav>
+    <a href="/" class="active">Tableau de bord</a>
     <a href="/produits">Produits</a>
-    <a href="/fournisseurs">Fournisseurs</a>
+    <a href="/fournisseur">Fournisseurs</a>
     <a href="/mouvements">Mouvements Stock</a>
 </nav>
 
 <div class="container">
-    <h2>Bienvenue dans le système de gestion d'entrepôt</h2>
+    <h2>Bienvenue dans votre gestion d'entrepôt</h2>
+    <p style="color: var(--text-muted); margin-bottom: 2rem;">Gérez vos stocks, fournisseurs et mouvements en temps réel.</p>
+    
+    <div class="dashboard">
+        <a href="/produits" class="card">
+            <i class="fas fa-box"></i>
+            <h3>Produits</h3>
+            <p>Gérer l'inventaire et les prix</p>
+        </a>
+        <a href="/fournisseur" class="card">
+            <i class="fas fa-truck-field"></i>
+            <h3>Fournisseurs</h3>
+            <p>Liste et contacts partenaires</p>
+        </a>
+        <a href="/mouvements" class="card">
+            <i class="fas fa-exchange-alt"></i>
+            <h3>Mouvements</h3>
+            <p>Historique des entrées/sorties</p>
+        </a>
+    </div>
 </div>
 
 </body>

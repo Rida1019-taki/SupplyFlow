@@ -1,38 +1,59 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Produits</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SupplyFlow | Produits</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-<h2>Liste des Produits</h2>
+<header>
+    <h1><i class="fas fa-boxes-packing"></i> SupplyFlow Logistics</h1>
+</header>
 
-<a href="/produits/ajouter" class="btn">Ajouter Produit</a>
+<nav>
+    <a href="/">Tableau de bord</a>
+    <a href="/produits" class="active">Produits</a>
+    <a href="/fournisseur">Fournisseurs</a>
+    <a href="/mouvements">Mouvements Stock</a>
+</nav>
 
-<table>
-    <tr>
-        <th>ID</th>
-        <th>Nom</th>
-        <th>Catégorie</th>
-        <th>Prix</th>
-        <th>Quantité</th>
-        <th>Actions</th>
-    </tr>
+<div class="container">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+        <h2>Liste des Produits</h2>
+        <a href="/produits/ajouter" class="btn"><i class="fas fa-plus"></i> Ajouter Produit</a>
+    </div>
 
-    <tr th:each="p : ${produits}">
-        <td th:text="${p.id}"></td>
-        <td th:text="${p.nom}"></td>
-        <td th:text="${p.categorie}"></td>
-        <td th:text="${p.prix}"></td>
-        <td th:text="${p.quantite}"></td>
-        <td>
-            <a th:href="@{/produits/edit/{id}(id=${p.id})}">Modifier</a>
-            <a th:href="@{/produits/delete/{id}(id=${p.id})}">Supprimer</a>
-        </td>
-    </tr>
-
-</table>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nom</th>
+                    <th>Catégorie</th>
+                    <th>Prix</th>
+                    <th>Quantité</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="p : ${produits}">
+                    <td th:text="${p.id}"></td>
+                    <td style="font-weight: 600;" th:text="${p.nom}"></td>
+                    <td><span class="badge badge-info" th:text="${p.categorie}"></span></td>
+                    <td th:text="${p.prix + ' €'}"></td>
+                    <td th:text="${p.quantity}"></td>
+                    <td>
+                        <a th:href="@{/produits/edit/{id}(id=${p.id})}" style="color: var(--primary); margin-right: 1rem;"><i class="fas fa-edit"></i></a>
+                        <a th:href="@{/produits/delete/{id}(id=${p.id})}" style="color: var(--danger);"><i class="fas fa-trash"></i></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 
 </body>
 </html>

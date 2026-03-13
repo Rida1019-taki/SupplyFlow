@@ -1,29 +1,54 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Fournisseurs</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SupplyFlow | Fournisseurs</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-<h2>Liste des Fournisseurs</h2>
+<header>
+    <h1><i class="fas fa-boxes-packing"></i> SupplyFlow Logistics</h1>
+</header>
 
-<table>
-    <tr>
-        <th>ID</th>
-        <th>Nom</th>
-        <th>Ville</th>
-        <th>Téléphone</th>
-    </tr>
+<nav>
+    <a href="/">Tableau de bord</a>
+    <a href="/produits">Produits</a>
+    <a href="/fournisseur" class="active">Fournisseurs</a>
+    <a href="/mouvements">Mouvements Stock</a>
+</nav>
 
-    <tr th:each="f : ${fournisseurs}">
-        <td th:text="${f.id}"></td>
-        <td th:text="${f.nom}"></td>
-        <td th:text="${f.ville}"></td>
-        <td th:text="${f.telephone}"></td>
-    </tr>
+<div class="container">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+        <h2>Liste des Fournisseurs</h2>
+        <a href="/fournisseur/ajouter" class="btn"><i class="fas fa-plus"></i> Ajouter Fournisseur</a>
+    </div>
 
-</table>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nom du Fournisseur</th>
+                    <th>Ville</th>
+                    <th>Téléphone</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="f : ${fournisseurs}">
+                    <td th:text="${f.idFournisseur}"></td>
+                    <td style="font-weight: 600;" th:text="${f.nom}"></td>
+                    <td th:text="${f.ville}"></td>
+                    <td th:text="${f.telefone}"></td>
+                    <td><span class="badge badge-success">Actif</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 
 </body>
 </html>

@@ -1,33 +1,42 @@
 package com.SupplyFlow.SupplyFlow.Controller;
 
-import com.SupplyFlow.SupplyFlow.Model.Fournisseur;
 import com.SupplyFlow.SupplyFlow.Model.MouvementStock;
+import com.SupplyFlow.SupplyFlow.Model.Produit;
 import com.SupplyFlow.SupplyFlow.Service.MouvementStockService;
+import com.SupplyFlow.SupplyFlow.Service.ProduitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @Controller
-@RequestMapping("/mouvementStock")
+@RequestMapping("/mouvements")
 public class MouvementStockController {
 
     @Autowired
     private MouvementStockService mouvementStockService;
 
+    @Autowired
+    private ProduitService produitService;
+
     @GetMapping
-    public List<MouvementStock> getAllMouvements() {
-        return mouvementStockService.getMouvements();
+    public String getAllMouvements(Model model) {
+        model.addAttribute("mouvements", mouvementStockService.getMouvements());
+        model.addAttribute("produits", produitService.getProduits());
+        return "mouvements";
     }
 
-    @PostMapping("/entree/{produitId}")
-    public MouvementStock entreeStock(@PathVariable Long produitId , @RequestBody MouvementStock m){
-        return mouvementStockService.entreeStock(produitId , m.getQuantity());
+    @PostMapping("/entree")
+    public String entreeStock(@RequestParam Long produitId, @RequestParam int quantity) {
+        mouvementStockService.entreeStock(produitId, quantity);
+        return "redirect:/mouvements";
     }
 
-    @PostMapping("/sortie/{produitId}")
-    public MouvementStock sortieStock(@PathVariable Long produitId , @RequestBody MouvementStock m){
-        return mouvementStockService.sortieStock(produitId , m.getQuantity());
+    @PostMapping("/sortie")
+    public String sortieStock(@RequestParam Long produitId, @RequestParam int quantity) {
+        mouvementStockService.sortieStock(produitId, quantity);
+        return "redirect:/mouvements";
     }
 }

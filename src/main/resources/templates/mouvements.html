@@ -1,32 +1,109 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Mouvements Stock</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SupplyFlow | Mouvements</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .mouvement-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        .action-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        }
+        select, input { margin-bottom: 1rem; }
+    </style>
 </head>
 <body>
 
-<h2>Historique des mouvements</h2>
+<header>
+    <h1><i class="fas fa-boxes-packing"></i> SupplyFlow Logistics</h1>
+</header>
 
-<table>
+<nav>
+    <a href="/">Tableau de bord</a>
+    <a href="/produits">Produits</a>
+    <a href="/fournisseur">Fournisseurs</a>
+    <a href="/mouvements" class="active">Mouvements Stock</a>
+</nav>
 
-    <tr>
-        <th>ID</th>
-        <th>Produit</th>
-        <th>Type</th>
-        <th>Quantité</th>
-        <th>Date</th>
-    </tr>
+<div class="container">
+    <h2>Gestion des Mouvements</h2>
 
-    <tr th:each="m : ${mouvements}">
-        <td th:text="${m.id}"></td>
-        <td th:text="${m.produit.nom}"></td>
-        <td th:text="${m.type}"></td>
-        <td th:text="${m.quantite}"></td>
-        <td th:text="${m.date}"></td>
-    </tr>
+    <div class="mouvement-actions">
+        <!-- Entry Form -->
+        <div class="action-card">
+            <h3 style="color: var(--success); margin-bottom: 1rem;"><i class="fas fa-plus-circle"></i> Entrée de Stock</h3>
+            <form th:action="@{/mouvements/entree}" method="post">
+                <label>Produit</label>
+                <select name="produitId" required style="width: 100%; padding: 0.75rem; border-radius: 8px; border: 1px solid var(--border);">
+                    <option value="">Sélectionner un produit...</option>
+                    <option th:each="p : ${produits}" th:value="${p.id}" th:text="${p.nom + ' (Stock: ' + p.quantity + ')'}"></option>
+                </select>
+                <div style="margin-top: 1rem;">
+                    <label>Quantité à ajouter</label>
+                    <input type="number" name="quantity" min="1" placeholder="Ex: 50" required>
+                </div>
+                <button type="submit" class="btn" style="background-color: var(--success); width: 100%;">Enregistrer l'Entrée</button>
+            </form>
+        </div>
 
-</table>
+        <!-- Exit Form -->
+        <div class="action-card">
+            <h3 style="color: var(--danger); margin-bottom: 1rem;"><i class="fas fa-minus-circle"></i> Sortie de Stock</h3>
+            <form th:action="@{/mouvements/sortie}" method="post">
+                <label>Produit</label>
+                <select name="produitId" required style="width: 100%; padding: 0.75rem; border-radius: 8px; border: 1px solid var(--border);">
+                    <option value="">Sélectionner un produit...</option>
+                    <option th:each="p : ${produits}" th:value="${p.id}" th:text="${p.nom + ' (Stock: ' + p.quantity + ')'}"></option>
+                </select>
+                <div style="margin-top: 1rem;">
+                    <label>Quantité à retirer</label>
+                    <input type="number" name="quantity" min="1" placeholder="Ex: 10" required>
+                </div>
+                <button type="submit" class="btn" style="background-color: var(--danger); width: 100%;">Enregistrer la Sortie</button>
+            </form>
+        </div>
+    </div>
+
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+        <h3><i class="fas fa-history"></i> Historique des Mouvements</h3>
+    </div>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Produit</th>
+                    <th>Type</th>
+                    <th>Quantité</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="m : ${mouvements}">
+                    <td th:text="${m.idMouvement}"></td>
+                    <td style="font-weight: 600;" th:text="${m.produit.nom}"></td>
+                    <td>
+                        <span th:if="${m.type == 'ENTREE'}" class="badge badge-success"><i class="fas fa-arrow-down"></i> Entrée</span>
+                        <span th:if="${m.type == 'SORTIE'}" class="badge" style="background: #fee2e2; color: #991b1b;"><i class="fas fa-arrow-up"></i> Sortie</span>
+                    </td>
+                    <td th:text="${m.quantity}"></td>
+                    <td th:text="${m.date}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 
 </body>
 </html>

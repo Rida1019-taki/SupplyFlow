@@ -21,7 +21,14 @@ public class ProduitController {
         return "produits";
     }
 
+    @GetMapping("/ajouter")
+    public String showAddProduitForm(Model model) {
+        model.addAttribute("produit", new Produit());
+        return "ajouter-produit";
+    }
+
     @GetMapping("/{id}")
+    @ResponseBody
     public Produit getProduitById(@PathVariable Long id){
         return produitService.getProduitById(id);
     }

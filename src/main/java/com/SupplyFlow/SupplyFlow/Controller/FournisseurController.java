@@ -24,10 +24,16 @@ public class FournisseurController {
         return "fournisseurs";
     }
 
+    @GetMapping("/ajouter")
+    public String showAddFournisseurForm(Model model) {
+        model.addAttribute("fournisseur", new Fournisseur());
+        return "ajouter-fournisseur";
+    }
 
-    @PostMapping
-    public Fournisseur addFournisseur(@RequestBody Fournisseur fournisseur){
-        return fournisseurService.addFournisseur(fournisseur);
+    @PostMapping("/ajouter")
+    public String addFournisseur(@ModelAttribute("fournisseur") Fournisseur fournisseur){
+        fournisseurService.addFournisseur(fournisseur);
+        return "redirect:/fournisseur";
     }
 
     @DeleteMapping("/{id}")
