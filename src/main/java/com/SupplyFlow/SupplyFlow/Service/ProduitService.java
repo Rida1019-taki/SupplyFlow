@@ -28,12 +28,13 @@ public class ProduitService {
         return produitRepository.save(produit);
     }
 
-    public Produit udpateProduit(Long id, Produit produit) {
+    public Produit updateProduit(Long id, Produit produit) {
         Produit produitUpdate = produitRepository.findById(id).orElseThrow();
         produitUpdate.setNom(produit.getNom());
         produitUpdate.setCategorie(produit.getCategorie());
         produitUpdate.setPrix(produit.getPrix());
         produitUpdate.setQuantity(produit.getQuantity());
+        produitUpdate.setFournisseur(produit.getFournisseur());
         return produitRepository.save(produitUpdate);
     }
 

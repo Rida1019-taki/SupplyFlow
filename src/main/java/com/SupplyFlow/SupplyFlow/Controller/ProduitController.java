@@ -1,6 +1,7 @@
 package com.SupplyFlow.SupplyFlow.Controller;
 
 import com.SupplyFlow.SupplyFlow.Model.Produit;
+import com.SupplyFlow.SupplyFlow.Service.FournisseurService;
 import com.SupplyFlow.SupplyFlow.Service.ProduitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,9 @@ public class ProduitController {
     @Autowired
     private ProduitService produitService;
 
+    @Autowired
+    private FournisseurService fournisseurService;
+
     @GetMapping
     public String getProduits(Model model) {
         model.addAttribute("produits", produitService.getProduits());
@@ -24,6 +28,7 @@ public class ProduitController {
     @GetMapping("/ajouter")
     public String showAddProduitForm(Model model) {
         model.addAttribute("produit", new Produit());
+        model.addAttribute("fournisseurs", fournisseurService.getFournisseur());
         return "ajouter-produit";
     }
 
@@ -43,12 +48,13 @@ public class ProduitController {
     public String showEditProduitForm(@PathVariable Long id, Model model) {
         Produit produit = produitService.getProduitById(id);
         model.addAttribute("produit", produit);
+        model.addAttribute("fournisseurs", fournisseurService.getFournisseur());
         return "modifier-produit";
     }
 
     @PostMapping("/modifier/{id}")
     public String updateProduit(@PathVariable Long id, @ModelAttribute Produit produit) {
-        produitService.udpateProduit(id, produit);
+        produitService.updateProduit(id, produit);
         return "redirect:/produits";
     }
 

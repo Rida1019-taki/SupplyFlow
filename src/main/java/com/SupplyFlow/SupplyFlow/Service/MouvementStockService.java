@@ -42,15 +42,19 @@ public class MouvementStockService {
     public MouvementStock sortieStock(Long produitId , int quantity){
         Produit produit = produitRepository.findById(produitId).orElse(null);
         if (produit != null){
-            produit.setQuantity(produit.getQuantity() - quantity);
-            produitRepository.save(produit);
+            if (produit.getQuantity() >= quantity) {
+                produit.setQuantity(produit.getQuantity() - quantity);
+                produitRepository.save(produit);
 
-            MouvementStock mouvementStock = new MouvementStock();
-            mouvementStock.setType("SORTIE");
-            mouvementStock.setQuantity(quantity);
-            mouvementStock.setDate(LocalDate.now());
-            mouvementStock.setProduit(produit);
-            return mouvementStockRepository.save(mouvementStock);
+                MouvementStock mouvementStock = new MouvementStock();
+                mouvementStock.setType("SORTIE");
+                mouvementStock.setQuantity(quantity);
+                mouvementStock.setDate(LocalDate.now());
+                mouvementStock.setProduit(produit);
+                return mouvementStockRepository.save(mouvementStock);
+            }else {
+                throw new RuntimeException("Stock insuffisant");
+            }
         }
         return null;
     }

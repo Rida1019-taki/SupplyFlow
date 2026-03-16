@@ -35,6 +35,7 @@
                     <th>Catégorie</th>
                     <th>Prix</th>
                     <th>Quantité</th>
+                    <th>Fournisseur</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -43,11 +44,12 @@
                     <td th:text="${p.id}"></td>
                     <td style="font-weight: 600;" th:text="${p.nom}"></td>
                     <td><span class="badge badge-info" th:text="${p.categorie}"></span></td>
-                    <td th:text="${p.prix + ' €'}"></td>
+                    <td th:text="${p.prix + ' DH'}"></td>
                     <td th:text="${p.quantity}"></td>
+                    <td th:text="${p.fournisseur != null ? p.fournisseur.nom : 'N/A'}"></td>
                     <td>
-                        <a th:href="@{/produits/edit/{id}(id=${p.id})}" style="color: var(--primary); margin-right: 1rem;"><i class="fas fa-edit"></i></a>
-                        <a th:href="@{/produits/delete/{id}(id=${p.id})}" style="color: var(--danger);"><i class="fas fa-trash"></i></a>
+                        <a th:href="@{/produits/modifier/{id}(id=${p.id})}" style="color: var(--primary); margin-right: 1rem;"><i class="fas fa-edit"></i></a>
+                        <a th:href="@{/produits/supprimer/{id}(id=${p.id})}" style="color: var(--danger);"><i class="fas fa-trash"></i></a>
                     </td>
                 </tr>
             </tbody>

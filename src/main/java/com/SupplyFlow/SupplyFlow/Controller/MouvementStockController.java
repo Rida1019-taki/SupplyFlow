@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -35,8 +36,12 @@ public class MouvementStockController {
     }
 
     @PostMapping("/sortie")
-    public String sortieStock(@RequestParam Long produitId, @RequestParam int quantity) {
-        mouvementStockService.sortieStock(produitId, quantity);
+    public String sortieStock(@RequestParam Long produitId, @RequestParam int quantity, RedirectAttributes redirectAttributes) {
+        try {
+            mouvementStockService.sortieStock(produitId, quantity);
+        } catch (RuntimeException e) {
+            redirectAttributes.addFlashAttribute("error", e.getMessage());
+        }
         return "redirect:/mouvements";
     }
 }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SupplyFlow | Nouveau Produit</title>
+    <title>SupplyFlow | Modifier Produit</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -22,10 +22,10 @@
 
 <div class="container">
     <div class="form-card">
-        <h2><i class="fas fa-plus-circle"></i> Ajouter un produit</h2>
-        <p style="color: var(--text-muted); margin-bottom: 2rem;">Remplissez les informations pour le nouvel article en stock.</p>
+        <h2><i class="fas fa-edit"></i> Modifier le produit</h2>
+        <p style="color: var(--text-muted); margin-bottom: 2rem;">Mettez à jour les informations du produit ci-dessous.</p>
 
-        <form th:action="@{/produits/ajouter}" th:object="${produit}" method="post">
+        <form th:action="@{/produits/modifier/{id}(id=${produit.id})}" th:object="${produit}" method="post">
             <div class="form-group">
                 <label>Nom du produit</label>
                 <input type="text" th:field="*{nom}" placeholder="Ex: Palette Bois" required>
@@ -43,7 +43,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Quantité Initiale</label>
+                    <label>Quantité</label>
                     <input type="number" th:field="*{quantity}" placeholder="0" required>
                 </div>
             </div>
@@ -51,13 +51,13 @@
             <div class="form-group">
                 <label>Fournisseur</label>
                 <select th:field="*{fournisseur.idFournisseur}" class="form-control" required>
-                    <option value="" disabled selected>Choisir un fournisseur</option>
+                    <option value="" disabled>Choisir un fournisseur</option>
                     <option th:each="f : ${fournisseurs}" th:value="${f.idFournisseur}" th:text="${f.nom}"></option>
                 </select>
             </div>
 
             <div style="margin-top: 2rem; display: flex; gap: 1rem;">
-                <button type="submit" class="btn"><i class="fas fa-save"></i> Enregistrer</button>
+                <button type="submit" class="btn"><i class="fas fa-save"></i> Enregistrer les modifications</button>
                 <a href="/produits" class="btn btn-secondary">Annuler</a>
             </div>
         </form>

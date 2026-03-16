@@ -36,6 +36,10 @@
 </nav>
 
 <div class="container">
+    <div th:if="${error}" class="alert alert-danger" style="background-color: #fee2e2; color: #991b1b; padding: 1rem; border-radius: 8px; margin-bottom: 2rem; border: 1px solid #fecaca;">
+        <i class="fas fa-exclamation-circle"></i> <span th:text="${error}"></span>
+    </div>
+
     <h2>Gestion des Mouvements</h2>
 
     <div class="mouvement-actions">
