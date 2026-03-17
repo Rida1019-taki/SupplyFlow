@@ -1,3 +1,2 @@
-<img width="5262" height="5064" alt="UseCaseDiagram1111" src="https://github.com/user-attachments/assets/2f1d198f-b052-48f0-83f9-15b9695a640f" />
-<img width="4200" height="2772" alt="Main11111" src="https://github.com/user-attachments/assets/b99fd5ed-37ad-4db1-84a5-42aac63de4ae" />
-
+<img width="458" height="445" alt="2222" src="https://github.com/user-attachments/assets/0a2faf10-5e48-493b-9514-1624e9e0e2fa" />
+<img width="382" height="250" alt="222" src="https://github.com/user-attachments/assets/4a3f961d-622d-4e3e-9884-b2a0977abc8f" />
