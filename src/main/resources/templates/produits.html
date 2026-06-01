@@ -46,7 +46,7 @@
                     <td><span class="badge badge-info" th:text="${p.categorie}"></span></td>
                     <td th:text="${p.prix + ' DH'}"></td>
                     <td th:text="${p.quantity}"></td>
-                    <td th:text="${p.fournisseur != null ? p.fournisseur.nom : 'N/A'}"></td>
+                    <td th:text="${p.fournisseur != null ? p.fournisseur.nom : 'Founisseur introuvable'}"></td>
                     <td>
                         <a th:href="@{/produits/modifier/{id}(id=${p.id})}" style="color: var(--primary); margin-right: 1rem;"><i class="fas fa-edit"></i></a>
                         <a th:href="@{/produits/supprimer/{id}(id=${p.id})}" style="color: var(--danger);"><i class="fas fa-trash"></i></a>

@@ -13,8 +13,12 @@ import java.util.List;
 @Service
 public class MouvementStockService {
 
-    @Autowired
-    private MouvementStockRepository mouvementStockRepository;
+//    @Autowired
+    private final MouvementStockRepository mouvementStockRepository;
+    public MouvementStockService(MouvementStockRepository mouvementStockRepository){
+        this.mouvementStockRepository = mouvementStockRepository;
+    }
+
 
     @Autowired
     private ProduitRepository produitRepository;
