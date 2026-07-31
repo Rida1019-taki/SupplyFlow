@@ -1,35 +1,79 @@
 # SupplyFlow Logistics
 
-## Contexte du projet
-La société **SupplyFlow Logistics** souhaite développer une application web interne permettant de gérer les opérations de base d’un entrepôt logistique. Vous devez réaliser une application web en utilisant **Spring Boot**, **Spring MVC** et **Spring Data JPA**.
+## 1. Nom du projet
 
-## Fonctionnalités attendues
+**Nom du projet :** SupplyFlow Logistics – Application de Gestion d’Entrepôt
 
-### Gestion des produits
-* **Ajouter un produit** : Permet d’enregistrer un nouveau produit avec son nom, sa catégorie, son prix et sa quantité.
-* **Afficher les produits** : Permet d’afficher la liste de tous les produits enregistrés.
-* **Modifier un produit** : Permet de modifier les informations d’un produit existant.
-* **Supprimer un produit** : Permet de supprimer un produit de la base de données.
+---
 
-### Gestion des fournisseurs
-* **Ajouter un fournisseur** : Permet d’ajouter un fournisseur avec son nom, sa ville et son téléphone.
-* **Afficher les fournisseurs** : Permet d’afficher la liste des fournisseurs enregistrés.
+# 2. Présentation du projet
 
-### Gestion des mouvements de stock
-* **Enregistrer une entrée de stock** : Permet d’ajouter une quantité à un produit lors d’une réception de marchandise.
-* **Enregistrer une sortie de stock** : Permet de retirer une quantité d’un produit lors d’une expédition.
-* **Afficher les mouvements de stock** : Permet de consulter l’historique des entrées et sorties de stock.
+SupplyFlow Logistics est une application web interne développée avec Spring Boot permettant de gérer les opérations principales d’un entrepôt logistique. Elle permet aux utilisateurs de gérer les produits, les fournisseurs et les mouvements de stock. Son objectif principal est de faciliter le suivi des stocks, des entrées et des sorties de marchandises grâce à une interface simple et organisée.
 
-### Bonus (optionnel)
-* **Recherche de produit** : Permet de rechercher un produit par son nom.
-* **Statistique simple** : Afficher le nombre total de produits enregistrés dans l’application.
+---
 
-## Contraintes techniques
-Le projet doit obligatoirement utiliser :
-* **Java**
-* **Spring Boot**
-* **Spring MVC**
-* **Spring Data JPA / Hibernate**
-* **Maven**
-* **Thymeleaf**
-* **Base de données H2 ou MySQL**
+# 3. Problématique
+
+Le problème identifié est que la gestion des stocks dans un entrepôt peut devenir difficile lorsque les produits, les fournisseurs et les mouvements de marchandises ne sont pas centralisés dans une seule application.
+
+La solution proposée permet de digitaliser la gestion de l’entrepôt en offrant une interface permettant d’ajouter, consulter, modifier et suivre les informations liées aux produits et aux stocks.
+
+---
+
+# 4. Fonctionnalités principales
+
+- Ajouter des produits dans l’entrepôt.
+- Afficher la liste des produits disponibles.
+- Modifier les informations d’un produit.
+- Supprimer un produit.
+- Ajouter et consulter les fournisseurs.
+- Enregistrer les entrées de stock.
+- Enregistrer les sorties de stock.
+- Consulter l’historique des mouvements de stock.
+- Rechercher un produit par son nom.
+- Afficher le nombre total de produits enregistrés.
+
+---
+
+# 5. Technologies utilisées
+
+| Technologie | Utilisation dans le projet |
+|-------------|----------------------------|
+| Java | Langage principal de développement |
+| Spring Boot | Création de l’application backend |
+| Spring MVC | Gestion des contrôleurs et des vues |
+| Spring Data JPA | Gestion de l’accès aux données |
+| Hibernate | Mapping objet-relationnel |
+| Thymeleaf | Création des interfaces web dynamiques |
+| Maven | Gestion des dépendances |
+| MySQL / H2 | Stockage des données |
+| HTML/CSS | Structure et mise en forme des pages |
+
+Nous avons utilisé **Spring Boot** pour construire l’application web.
+
+Nous avons utilisé **Spring MVC** pour gérer les requêtes utilisateurs et la navigation entre les pages.
+
+Nous avons utilisé **Spring Data JPA et Hibernate** pour communiquer avec la base de données.
+
+Nous avons utilisé **Thymeleaf** pour afficher les données dynamiques côté serveur.
+
+---
+
+# 6. Installation et lancement
+
+## 6.1 Prérequis
+
+Pour utiliser ce projet, vous devez disposer de :
+
+- Java 17 ou supérieur
+- Maven
+- MySQL ou H2 Database
+- Git
+- IntelliJ IDEA ou Visual Studio Code
+
+---
+
+## 6.2 Cloner le dépôt
+
+```bash
+git clone https://github.com/VOTRE_COMPTE/supplyflow-logistics.git
